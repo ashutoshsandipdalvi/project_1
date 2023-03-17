@@ -1,0 +1,44 @@
+pipeline
+{
+  agent any
+  stages
+  {
+      stage('conntinuous download')
+      {
+          steps
+          {
+            git 'https://github.com/ashutoshsandipdalvi/project_1.git'  
+          }
+      }
+      stage('continuous build')
+      {
+          steps
+          {
+              sh 'mvn package'
+          }
+      }
+      stage('continuous deploy')
+      {
+          steps
+          {
+            sh 'scp /var/lib/jenkins/workspace/declerative_pipeline/webapp/target/webapp.war ubuntu@172.31.46.90:/var/lib/tomcat9/webapps/sample1.war'
+          }
+      }
+      stage('continous download')
+      {
+          steps
+          {
+              git 'https://github.com/ashutoshsandipdalvi/testing1.git'
+              sh 'java -jar /var/lib/jenkins/workspace/declerative_pipeline/testing.jar'
+          }
+      }
+      stage('continupus delivery')
+      {
+          steps
+          {
+              input message: 'please adeploy', submitter: 'ashutosh'
+              sh 'scp /var/lib/jenkins/workspace/declerative_pipeline/webapp/target/webapp.war ubuntu@172.31.42.79:/var/lib/tomcat9/webapps/sample1.war'
+          }
+      }
+  }
+}
