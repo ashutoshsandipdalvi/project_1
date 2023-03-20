@@ -31,5 +31,6 @@ pipeline
               git 'https://github.com/ashutoshsandipdalvi/testing1.git'
               sh 'java -jar /var/lib/jenkins/workspace/declerative_pipeline/testing.jar'
           }
+      }
    }
 }
