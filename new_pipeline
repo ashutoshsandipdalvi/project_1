@@ -32,3 +32,4 @@ pipeline
               sh 'java -jar /var/lib/jenkins/workspace/declerative_pipeline/testing.jar'
           }
 }
+}
